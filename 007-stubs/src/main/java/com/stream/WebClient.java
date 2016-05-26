@@ -17,7 +17,7 @@ public class WebClient {
             while (-1 != (count = is.read(buffer))) {
                 content.append(new String(buffer, 0, count));
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             return null;
         }
         return content.toString();

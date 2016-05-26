@@ -6,32 +6,24 @@ import java.util.ResourceBundle;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/**
- * Default account manager implementation before refactoring.
- *
- * @version $Id: DefaultAccountManager1.java 503 2009-08-16 17:47:12Z paranoid12 $
- */
-public class DefaultAccountManager1
-    implements AccountManager
-{
+public class DefaultAccountManager1 implements AccountManager {
+
     /**
      * Logger instance.
      */
-    private static final Log LOGGER = LogFactory.getLog( DefaultAccountManager1.class );
+    private static final Log LOGGER = LogFactory.getLog(DefaultAccountManager1.class);
 
     /**
      * Finds an account for user with the given userID.
      *
      * @param
      */
-    public Account findAccountForUser( String userId )
-    {
-        LOGGER.debug( "Getting account for user [" + userId + "]" );
-        ResourceBundle bundle = PropertyResourceBundle.getBundle( "technical" );
-        String sql = bundle.getString( "FIND_ACCOUNT_FOR_USER" );
+    public Account findAccountForUser(String userId) {
+        LOGGER.debug("Getting account for user [" + userId + "]");
+        ResourceBundle bundle = PropertyResourceBundle.getBundle("technical");
+        String sql = bundle.getString("FIND_ACCOUNT_FOR_USER");
 
         // Some code logic to load a user account using JDBC
-        // [�]
         return null;
     }
 
@@ -40,8 +32,6 @@ public class DefaultAccountManager1
      *
      * @param
      */
-    public void updateAccount( Account account )
-    {
-        // Perform database access here
+    public void updateAccount(Account account) {
     }
 }

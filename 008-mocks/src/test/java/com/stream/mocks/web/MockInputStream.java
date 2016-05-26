@@ -3,14 +3,8 @@ package com.stream.mocks.web;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * A custom mock input stream to use in our tests.
- *
- * @version $Id: MockInputStream.java 505 2009-08-16 17:58:38Z paranoid12 $
- */
-public class MockInputStream
-    extends InputStream
-{
+
+public class MockInputStream extends InputStream {
     /**
      * Buffer to read in.
      */
@@ -31,8 +25,7 @@ public class MockInputStream
      *
      * @param buffer
      */
-    public void setBuffer( String buffer )
-    {
+    public void setBuffer(String buffer) {
         this.buffer = buffer;
     }
 
@@ -41,23 +34,18 @@ public class MockInputStream
      *
      * @return
      */
-    public int read()
-        throws IOException
-    {
-        if ( position == this.buffer.length() )
-        {
+    public int read() throws IOException {
+        if (position == this.buffer.length()) {
             return -1;
         }
 
-        return this.buffer.charAt( this.position++ );
+        return this.buffer.charAt(this.position++);
     }
 
     /**
      * Close the stream.
      */
-    public void close()
-        throws IOException
-    {
+    public void close() throws IOException {
         closeCount++;
         super.close();
     }
@@ -67,12 +55,9 @@ public class MockInputStream
      *
      * @throws java.lang.AssertionError
      */
-    public void verify()
-        throws java.lang.AssertionError
-    {
-        if ( closeCount != 1 )
-        {
-            throw new AssertionError( "close() should " + "have been called once and once only" );
+    public void verify() throws java.lang.AssertionError {
+        if (closeCount != 1) {
+            throw new AssertionError("close() should " + "have been called once and once only");
         }
     }
 }

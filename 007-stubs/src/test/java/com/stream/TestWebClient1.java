@@ -24,21 +24,21 @@ public class TestWebClient1 {
     }
 
     private class StubStreamHandlerFactory implements URLStreamHandlerFactory {
-        public URLStreamHandler createURLStreamHandler( String protocol ) {
+        public URLStreamHandler createURLStreamHandler(String protocol) {
             return new StubHttpURLStreamHandler();
         }
     }
 
     private class StubHttpURLStreamHandler extends URLStreamHandler {
-        protected URLConnection openConnection( URL url ) throws IOException {
-            return new StubHttpURLConnection( url );
+        protected URLConnection openConnection(URL url) throws IOException {
+            return new StubHttpURLConnection(url);
         }
     }
 
     @Test
     public void testGetContentOk() throws Exception {
         WebClient client = new WebClient();
-        String result = client.getContent( new URL( "http://localhost/" ) );
-        assertEquals( "It works", result );
+        String result = client.getContent(new URL("http://localhost/"));
+        assertEquals("It works", result);
     }
 }

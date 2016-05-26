@@ -5,14 +5,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * The mock implementation of the HttpURLConnection.
- *
- * @version $Id: MockHttpURLConnection.java 505 2009-08-16 17:58:38Z paranoid12 $
- */
-public class MockHttpURLConnection
-    extends HttpURLConnection
-{
+
+public class MockHttpURLConnection extends HttpURLConnection {
+
     /**
      * The input stream for the connection.
      */
@@ -21,9 +16,8 @@ public class MockHttpURLConnection
     /**
      * Constructor.
      */
-    public MockHttpURLConnection()
-    {
-        super( null );
+    public MockHttpURLConnection() {
+        super(null);
     }
 
     /**
@@ -31,9 +25,8 @@ public class MockHttpURLConnection
      *
      * @param url
      */
-    protected MockHttpURLConnection( URL url )
-    {
-        super( url );
+    protected MockHttpURLConnection(URL url) {
+        super(url);
     }
 
     /**

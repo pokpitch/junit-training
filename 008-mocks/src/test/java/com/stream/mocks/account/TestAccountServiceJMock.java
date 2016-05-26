@@ -14,14 +14,8 @@ import com.stream.mocks.account.Account;
 import com.stream.mocks.account.AccountManager;
 import com.stream.mocks.account.AccountService;
 
-/**
- * A test-case to test the AccountService class by means of the JMock framework.
- *
- * @version $Id: TestAccountServiceJMock.java 505 2009-08-16 17:58:38Z paranoid12 $
- */
-@RunWith( JMock.class )
-public class TestAccountServiceJMock
-{
+@RunWith(JMock.class)
+public class TestAccountServiceJMock {
     /**
      * The mockery context that we use to create our mocks.
      */
@@ -33,36 +27,33 @@ public class TestAccountServiceJMock
     private AccountManager mockAccountManager;
 
     @Before
-    public void setUp()
-    {
-        mockAccountManager = context.mock( AccountManager.class );
+    public void setUp() {
+        mockAccountManager = context.mock(AccountManager.class);
     }
 
     @Test
-    public void testTransferOk()
-    {
-        final Account senderAccount = new Account( "1", 200 );
+    public void testTransferOk() {
+        final Account senderAccount = new Account("1", 200);
 
-        final Account beneficiaryAccount = new Account( "2", 100 );
+        final Account beneficiaryAccount = new Account("2", 100);
 
-        context.checking( new Expectations()
-        {
+        context.checking(new Expectations() {
             {
-                oneOf( mockAccountManager ).findAccountForUser( "1" );
-                will( returnValue( senderAccount ) );
-                oneOf( mockAccountManager ).findAccountForUser( "2" );
-                will( returnValue( beneficiaryAccount ) );
+                oneOf(mockAccountManager).findAccountForUser("1");
+                will(returnValue(senderAccount ) );
+                oneOf(mockAccountManager).findAccountForUser("2");
+                will(returnValue(beneficiaryAccount));
 
-                oneOf( mockAccountManager ).updateAccount( senderAccount );
-                oneOf( mockAccountManager ).updateAccount( beneficiaryAccount );
+                oneOf(mockAccountManager).updateAccount(senderAccount);
+                oneOf(mockAccountManager).updateAccount(beneficiaryAccount);
             }
-        } );
+        });
 
         AccountService accountService = new AccountService();
-        accountService.setAccountManager( mockAccountManager );
-        accountService.transfer( "1", "2", 50 );
+        accountService.setAccountManager(mockAccountManager);
+        accountService.transfer("1","2", 50);
 
-        assertEquals( 150, senderAccount.getBalance() );
-        assertEquals( 150, beneficiaryAccount.getBalance() );
+        assertEquals(150, senderAccount.getBalance());
+        assertEquals(150, beneficiaryAccount.getBalance());
     }
 }

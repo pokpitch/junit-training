@@ -13,24 +13,24 @@ public class StubHttpURLConnection extends HttpURLConnection {
     private boolean isInput = true;
 
     protected StubHttpURLConnection(URL url) {
-        super( url );
+        super(url);
     }
 
     public InputStream getInputStream() throws IOException {
-        if (!isInput){
+        if (!isInput) {
             throw new ProtocolException("Cannot read from URLConnection" + " if doInput=false (call setDoInput(true))");
         }
         ByteArrayInputStream bais = new ByteArrayInputStream(new String("It works").getBytes());
         return bais;
     }
 
-    public void disconnect(){
+    public void disconnect() {
     }
 
-    public void connect() throws IOException{
+    public void connect() throws IOException {
     }
 
-    public boolean usingProxy(){
+    public boolean usingProxy() {
         return false;
     }
 }

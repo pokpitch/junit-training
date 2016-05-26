@@ -18,83 +18,73 @@ import org.junit.Test;
 import com.stream.mocks.web.ConnectionFactory;
 import com.stream.mocks.web.WebClient2;
 
-/**
- * Test the WebClient class using the EasyMock library.
- *
- * @version $Id: TestWebClientEasyMock.java 512 2009-08-16 18:16:02Z paranoid12 $
- */
-public class TestWebClientEasyMock
-{
-    private ConnectionFactory factory;
+public class TestWebClientEasyMock {
 
+    private ConnectionFactory factory;
     private InputStream stream;
 
     @Before
-    public void setUp()
-    {
-        factory = createMock("factory", ConnectionFactory.class );
-        stream = createMock("stream", InputStream.class );
+    public void setUp() {
+        factory = createMock("factory", ConnectionFactory.class);
+        stream = createMock("stream", InputStream.class);
     }
 
     @Test
-    public void testGetContentOk()
-        throws Exception
-    {
-        expect( factory.getData() ).andReturn( stream );
-        expect( stream.read() ).andReturn( new Integer( (byte) 'W' ) );
-        expect( stream.read() ).andReturn( new Integer( (byte) 'o' ) );
-        expect( stream.read() ).andReturn( new Integer( (byte) 'r' ) );
-        expect( stream.read() ).andReturn( new Integer( (byte) 'k' ) );
-        expect( stream.read() ).andReturn( new Integer( (byte) 's' ) );
-        expect( stream.read() ).andReturn( new Integer( (byte) '!' ) );
+    public void testGetContentOk() throws Exception {
+        expect(factory.getData()).andReturn(stream);
+        expect(stream.read()).andReturn(new Integer((byte) 'W' ));
+        expect(stream.read()).andReturn(new Integer((byte) 'o' ));
+        expect(stream.read()).andReturn(new Integer((byte) 'r' ));
+        expect(stream.read()).andReturn(new Integer((byte) 'k' ));
+        expect(stream.read()).andReturn(new Integer((byte) 's' ));
+        expect(stream.read()).andReturn(new Integer((byte) '!' ));
 
-        expect( stream.read() ).andReturn( -1 );
+        expect(stream.read()).andReturn(-1);
         stream.close();
 
-        replay( factory );
-        replay( stream );
+        replay(factory);
+        replay(stream);
 
         WebClient2 client = new WebClient2();
 
-        String result = client.getContent( factory );
+        String result = client.getContent(factory);
 
-        assertEquals( "Works!", result );
+        assertEquals("Works!", result);
     }
 
     @Test
     public void testGetContentInputStreamNull() throws Exception {
-        expect( factory.getData() ).andReturn( null );
+        expect(factory.getData()).andReturn(null);
 
-        replay( factory );
-        replay( stream );
+        replay(factory);
+        replay(stream);
 
         WebClient2 client = new WebClient2();
 
-        String result = client.getContent( factory );
+        String result = client.getContent(factory);
 
-        assertNull( result );
+        assertNull(result);
     }
 
     @Test
     public void testGetContentCannotCloseInputStream() throws Exception {
-        expect( factory.getData() ).andReturn( stream );
-        expect( stream.read() ).andReturn( -1 );
+        expect(factory.getData()).andReturn(stream);
+        expect(stream.read()).andReturn(-1);
         stream.close();
         expectLastCall().andThrow(new IOException("cannot close"));
 
-        replay( factory );
-        replay( stream );
+        replay(factory);
+        replay(stream);
 
         WebClient2 client = new WebClient2();
-        String result = client.getContent( factory );
+        String result = client.getContent(factory);
 
-        assertNull( result );
+        assertNull(result);
     }
 
     @After
-    public void tearDown()
-    {
-        verify( factory );
-        verify( stream );
+    public void tearDown() {
+        verify(factory);
+        verify(stream);
     }
 }

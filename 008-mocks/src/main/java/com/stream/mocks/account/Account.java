@@ -1,7 +1,6 @@
 package com.stream.mocks.account;
 
-public class Account
-{
+public class Account {
     /**
      * The id of the account.
      */
@@ -18,8 +17,7 @@ public class Account
      * @param accountId
      * @param initialBalance
      */
-    public Account( String accountId, long initialBalance )
-    {
+    public Account(String accountId, long initialBalance) {
         this.accountId = accountId;
         this.balance = initialBalance;
     }
@@ -29,8 +27,7 @@ public class Account
      *
      * @param amount
      */
-    public void debit( long amount )
-    {
+    public void debit(long amount) {
         this.balance -= amount;
     }
 
@@ -39,8 +36,7 @@ public class Account
      *
      * @param amount
      */
-    public void credit( long amount )
-    {
+    public void credit(long amount) {
         this.balance += amount;
     }
 
@@ -49,8 +45,7 @@ public class Account
      *
      * @return
      */
-    public long getBalance()
-    {
+    public long getBalance() {
         return this.balance;
     }
 }

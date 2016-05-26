@@ -9,9 +9,7 @@ import java.net.URL;
  *
  * @version $Id: HttpURLConnectionFactory.java 503 2009-08-16 17:47:12Z paranoid12 $
  */
-public class HttpURLConnectionFactory
-    implements ConnectionFactory
-{
+public class HttpURLConnectionFactory implements ConnectionFactory {
     /**
      * URL for the connection.
      */
@@ -22,8 +20,7 @@ public class HttpURLConnectionFactory
      *
      * @param url
      */
-    public HttpURLConnectionFactory( URL url )
-    {
+    public HttpURLConnectionFactory(URL url) {
         this.url = url;
     }
 
@@ -32,9 +29,7 @@ public class HttpURLConnectionFactory
      *
      * @return
      */
-    public InputStream getData()
-        throws Exception
-    {
+    public InputStream getData() throws Exception {
         HttpURLConnection connection = (HttpURLConnection) this.url.openConnection();
         return connection.getInputStream();
     }

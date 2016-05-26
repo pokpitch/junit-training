@@ -69,26 +69,26 @@ public class TestWebClient {
     }
 
     private class TestGetContentOkHandler extends AbstractHandler {
-        public void handle( String target, HttpServletRequest request, HttpServletResponse response, int dispatch ) throws IOException, ServletException {
+        public void handle( String target, HttpServletRequest request, HttpServletResponse response, int dispatch) throws IOException, ServletException {
             OutputStream out = response.getOutputStream();
             ByteArrayISO8859Writer writer = new ByteArrayISO8859Writer();
-            writer.write( "It works" );
+            writer.write("It works");
             writer.flush();
-            response.setIntHeader( HttpHeaders.CONTENT_LENGTH, writer.size() );
-            writer.writeTo( out );
+            response.setIntHeader(HttpHeaders.CONTENT_LENGTH, writer.size());
+            writer.writeTo(out);
             out.flush();
         }
     }
 
     private class TestGetContentServerErrorHandler extends AbstractHandler {
-        public void handle( String target, HttpServletRequest request, HttpServletResponse response, int dispatch ) throws IOException, ServletException {
-            response.sendError( HttpServletResponse.SC_SERVICE_UNAVAILABLE );
+        public void handle(String target, HttpServletRequest request, HttpServletResponse response, int dispatch) throws IOException, ServletException {
+            response.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
         }
     }
 
     private class TestGetContentNotFoundHandler extends AbstractHandler {
-        public void handle( String target, HttpServletRequest request, HttpServletResponse response, int dispatch ) throws IOException, ServletException {
-            response.sendError( HttpServletResponse.SC_NOT_FOUND );
+        public void handle(String target, HttpServletRequest request, HttpServletResponse response, int dispatch) throws IOException, ServletException {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 }

@@ -1,16 +1,13 @@
 package com.stream.mocks.configurations;
 
-public class DefaultConfiguration
-    implements Configuration
-{
+public class DefaultConfiguration implements Configuration {
 
     /**
      * Constructor.
      *
      * @param configurationName
      */
-    public DefaultConfiguration( String configurationName )
-    {
+    public DefaultConfiguration(String configurationName) {
     }
 
     /**
@@ -18,8 +15,7 @@ public class DefaultConfiguration
      *
      * @return
      */
-    public String getSQL( String sqlString )
-    {
+    public String getSQL(String sqlString) {
         return null;
     }
 }
