@@ -22,5 +22,6 @@ public class TestWebClientFail {
 
         assertEquals("It works", result);
         mockStream.verify();
+
     }
 }
