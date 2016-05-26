@@ -52,13 +52,13 @@ public class TestWebClient {
 
     @Test
     public void testGetContentError() throws Exception {
-        String result = client.getContent( new URL( "http://localhost:8080/testGetContentError/" ) );
+        String result = client.getContent(new URL( "http://localhost:8080/testGetContentError/"));
         assertNull( result );
     }
 
     @Test
     public void testGetContentNotFound() throws Exception {
-        String result = client.getContent( new URL( "http://localhost:8080/testGetContentNotFound" ) );
+        String result = client.getContent(new URL( "http://localhost:8080/testGetContentNotFound"));
         assertNull( result );
     }
 
@@ -69,7 +69,7 @@ public class TestWebClient {
     }
 
     private class TestGetContentOkHandler extends AbstractHandler {
-        public void handle( String target, HttpServletRequest request, HttpServletResponse response, int dispatch) throws IOException, ServletException {
+        public void handle(String target, HttpServletRequest request, HttpServletResponse response, int dispatch) throws IOException, ServletException {
             OutputStream out = response.getOutputStream();
             ByteArrayISO8859Writer writer = new ByteArrayISO8859Writer();
             writer.write("It works");
