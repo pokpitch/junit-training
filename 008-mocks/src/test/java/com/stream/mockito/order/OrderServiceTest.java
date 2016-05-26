@@ -54,8 +54,7 @@ public class OrderServiceTest {
 	}
 	
 	@Test(expected = IOException.class)
-	public void OutputStreamWriter_rethrows_an_exception_from_OutputStream()
-			throws IOException {
+	public void OutputStreamWriter_rethrows_an_exception_from_OutputStream() throws IOException {
 		OutputStream mock = mock(OutputStream.class);
 		OutputStreamWriter osw = new OutputStreamWriter(mock);
 		doThrow(new IOException()).when(mock).close();

@@ -5,7 +5,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
+
+import static java.util.Arrays.asList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
@@ -28,7 +32,7 @@ public class UserLdapServiceJUGTest {
     @Mock
     private UserRoleRepository roleRepository;
     
-    final User expectedUser = new User(USER_ID, "Tomas", "Turek");
+    final User expectedUser = new User(USER_ID, "Pokpitch", "Patcharadamrongkul");
     
     Set<String> roles = new HashSet<String>();
     
@@ -54,6 +58,16 @@ public class UserLdapServiceJUGTest {
         verifyZeroInteractions(ldapConnector);
     }
 
+    @Test
+    public void getGetAllUser() {
+    	mockGetAllUser();
+    	List<User> users = service.getAllUser();
+    	
+    	assertNotNull(users);
+    	assertEquals(4, users.size());
+    	
+    }
+    
     private void verifyGetUserMocks() {
         verify(ldapConnector).getUser(USER_ID);
         verify(roleRepository).getRolesForUser(USER_ID);
@@ -62,6 +76,15 @@ public class UserLdapServiceJUGTest {
     private void mockGetUser() {
         when(ldapConnector.getUser(USER_ID)).thenReturn(expectedUser);
         when(roleRepository.getRolesForUser(USER_ID)).thenReturn(roles);
+    }
+    
+    private void mockGetAllUser() {
+    	when(ldapConnector.getAllUser()).thenReturn(asList(
+    			new User("1", "Pokpitch", "Patcharadamrongkul"),
+    			new User("2", "Niphon", "Jobsri"), 
+    			new User("3", "Darth", "Vader"),
+    			new User("4", "Luke", "Skywalker")
+    			));
     }
     
     @Test (expected = RuntimeException.class)

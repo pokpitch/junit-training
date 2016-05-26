@@ -1,6 +1,7 @@
 package com.stream.mockito.user.service;
 
 import java.util.Arrays;
+import java.util.List;
 
 import com.stream.mockito.user.connector.UserLdapConnector;
 import com.stream.mockito.user.domain.User;
@@ -16,10 +17,6 @@ public class UserLdapService implements UserService {
         this.userRoleRepository = userRoleRepository;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public User getUser(String id) {
 
         final User user = this.userLdapConnector.getUser(id);
@@ -31,11 +28,17 @@ public class UserLdapService implements UserService {
 
         return user;
     }
+    
+    public List<User> getAllUser() {
+    	
+    	final List<User> users = this.userLdapConnector.getAllUser();
+    	
+        if (users == null) {
+            throw new RuntimeException("Could not be found for any user.");
+        }    	
+    	return users;
+    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void addRoleToUser(String userId, String... roles) {
         final User user = getUser(userId);
 
@@ -47,4 +50,5 @@ public class UserLdapService implements UserService {
         user.getRoles().addAll(Arrays.asList(roles));
         this.userRoleRepository.addRoleToUser(userId, roles);
     }
+    
 }
