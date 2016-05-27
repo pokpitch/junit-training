@@ -46,7 +46,6 @@ public class UserLdapServiceTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
         roles.add("ADMIN");
     }
 
@@ -57,6 +56,7 @@ public class UserLdapServiceTest {
      */
     @Test
     public void testGetUserHappyPath() {
+      
         when(ldapConnectorMock.getUser(eq(USER_ID))).thenReturn(expectedUser);
         when(userRoleRepositoryMock.getRolesForUser(USER_ID)).thenReturn(roles);
 
