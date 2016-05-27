@@ -11,25 +11,33 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(value = Parameterized.class)
-public class CalculatorTest {
+public class CalculatorSumTest {
 
     private int expected;
-    private int actual;
+    private int numberOne;
+    private int numberTwo;
 
     @Parameters
     public static Collection<Integer[]> data() {
-        return Arrays.asList(new Integer[][] { { 1, 1 }, { 2, 4 }, { 3, 9 }, { 4, 16 }, { 5, 25 }, });
+        return Arrays.asList(new Integer[][] {
+          { 6, 1, 5},
+          { 6, 2, 4 },
+          { 12, 3, 9 },
+          { 20, 4, 16 },
+          { 30, 5, 25 },
+      });
     }
 
-    public CalculatorTest(int expected, int actual) {
+    public CalculatorSumTest(int expected, int numberOne, int numberTwo) {
         this.expected = expected;
-        this.actual = actual;
+        this.numberOne = numberOne;
+        this.numberTwo = numberTwo;
     }
 
     @Test
-    public void squareRoot() {
+    public void sum() {
         Calculator calculator = new Calculator();
-        assertEquals(expected, calculator.squareRoot(actual));
+        assertEquals(expected, calculator.sum(numberOne, numberTwo));
     }
 
 }
